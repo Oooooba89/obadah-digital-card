@@ -1,1 +1,178 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050a12">
+<title>Obadah Aljilani | Digital Business Card</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;display:flex;align-items:center;
+ justify-content:center;overflow:hidden;
+ background:radial-gradient(ellipse at center,#10233b 0%,#07101d 48%,#02050a 100%);
+ color:#eaf5ff;font-family:Arial,Helvetica,sans-serif;
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;
+ background-image:linear-gradient(#4ca8ff0b 1px,transparent 1px),
+ linear-gradient(90deg,#4ca8ff0b 1px,transparent 1px);
+ background-size:42px 42px;
+ mask-image:linear-gradient(transparent,#000,transparent);
+}
+.scene{width:min(88vw,650px);height:390px;perspective:1400px;position:relative;z-index:1}
+.card{
+ width:100%;height:100%;position:relative;transform-style:preserve-3d;
+ cursor:grab;user-select:none;touch-action:pan-y;
+ transition:transform .12s ease-out;
+}
+.card:active{cursor:grabbing}
+.face{
+ position:absolute;inset:0;border-radius:22px;overflow:hidden;
+ backface-visibility:hidden;
+ background:linear-gradient(135deg,#202b38,#080d15 45%,#172333);
+ border:1px solid #5db8ff9c;
+ box-shadow:inset 0 0 0 3px #ffffff08,
+ inset 0 0 30px #50aaff15,0 0 18px #168cff55,
+ 0 25px 70px #000b;
+}
+.face:before{
+ content:"";position:absolute;inset:7px;border:1px solid #6abaff45;
+ border-radius:16px;pointer-events:none;
+}
+.face:after{
+ content:"";position:absolute;width:150%;height:100%;
+ top:-20%;left:-130%;transform:rotate(25deg);
+ background:linear-gradient(90deg,transparent,#ffffff10,transparent);
+ animation:shine 7s infinite;
+ pointer-events:none;
+}
+@keyframes shine{50%,100%{left:140%}}
+.front{display:flex;flex-direction:column;justify-content:center;padding:45px 55px}
+.logo{
+ width:72px;height:72px;border:1px solid #54baff;
+ border-radius:18px;display:grid;place-items:center;
+ color:#9cdbff;font-size:34px;
+ box-shadow:0 0 22px #168cff65,inset 0 0 20px #168cff30;
+ margin-bottom:25px;
+}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#70c5ff;text-transform:uppercase}
+h1{font-size:clamp(27px,5vw,43px);margin:12px 0 8px;letter-spacing:1px}
+.role{font-size:15px;color:#b5c9dc;letter-spacing:1.4px}
+.brand{margin-top:30px;font-size:11px;letter-spacing:3px;color:#69bfff}
+.front .hint{position:absolute;bottom:27px;right:30px;color:#79caff;font-size:12px;letter-spacing:2px}
+.back{transform:rotateY(180deg);padding:35px 42px}
+.back h2{font-size:21px;margin:0 0 8px;letter-spacing:2px}
+.line{height:1px;background:linear-gradient(90deg,#55baff,transparent);margin:13px 0 18px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.item small{display:block;color:#6bbfff;font-size:9px;letter-spacing:2px;margin-bottom:5px}
+.item span,.item a{font-size:12px;color:#e2efff;text-decoration:none;overflow-wrap:anywhere}
+.item a:hover{color:#70c5ff}
+.stats{margin-top:22px;color:#85ceff;font-size:19px;font-weight:bold}
+.stats small{display:block;color:#aabed1;font-size:10px;font-weight:normal;letter-spacing:2px;margin-top:4px}
+.projects{margin-top:16px;font-size:11px;color:#bdccdc;line-height:1.8}
+.save{
+ position:absolute;bottom:24px;left:42px;border:1px solid #4cafff;
+ color:#bde5ff;background:#0c2034;padding:10px 15px;
+ border-radius:6px;font-size:10px;letter-spacing:1.5px;
+ cursor:pointer;z-index:4;
+}
+.save:hover{background:#123655}
+.arrow{
+ position:absolute;bottom:-48px;left:50%;transform:translateX(-50%);
+ color:#80caff;font-size:24px;animation:bounce 1.5s infinite;
+}
+@keyframes bounce{50%{transform:translate(-50%,7px)}}
+.caption{
+ position:absolute;top:calc(100% + 18px);width:100%;
+ text-align:center;font-size:10px;letter-spacing:3px;color:#7095b5;
+}
+@media(max-width:600px){
+ .scene{width:92vw;height:340px}
+ .front{padding:30px}
+ .back{padding:27px 25px}
+ .logo{width:58px;height:58px;font-size:28px;margin-bottom:17px}
+ .brand{margin-top:22px;font-size:9px}
+ .contact{gap:12px 10px}
+ .item span,.item a{font-size:10px}
+ .stats{margin-top:15px;font-size:17px}
+ .projects{margin-top:10px;font-size:10px}
+ .save{left:25px;bottom:17px}
+}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+ <div class="card" id="card">
+  <section class="face front">
+   <div class="logo">⬡</div>
+   <div class="eyebrow">NPC · IT & CYBERSECURITY</div>
+   <h1>OBADAH ALJILANI</h1>
+   <div class="role">Cybersecurity & Systems Administrator</div>
+   <div class="brand">CYBERSECURITY&nbsp; | &nbsp;INFRASTRUCTURE&nbsp; | &nbsp;GOVERNANCE</div>
+   <div class="hint">FLIP CARD&nbsp; ↗</div>
+  </section>
+  <section class="face back">
+   <h2>CONTACT & PROFILE</h2>
+   <div class="line"></div>
+   <div class="contact">
+    <div class="item"><small>PHONE</small><a href="tel:+962787952436">+962 78 795 2436</a></div>
+    <div class="item"><small>WORK EMAIL</small><a href="mailto:Oaljilani@npc.com.jo">Oaljilani@npc.com.jo</a></div>
+    <div class="item"><small>PERSONAL EMAIL</small><a href="mailto:obadahaljilani5@gmail.com">obadahaljilani5@gmail.com</a></div>
+    <div class="item"><small>LINKEDIN</small><a href="https://www.linkedin.com/in/obadah-aljilani" target="_blank" rel="noopener">View LinkedIn Profile ↗</a></div>
+   </div>
+   <div class="stats">3,546+ <small>TECHNICAL ISSUES RESOLVED</small></div>
+   <div class="projects">
+    Network Security · Fortinet · ISO 27001 · GRC<br>
+    IT Infrastructure · Business Continuity<br>
+    Security Governance & Documentation
+   </div>
+   <button class="save" id="save">↓ &nbsp; SAVE CONTACT</button>
+  </section>
+ </div>
+ <div class="arrow">↕</div>
+ <div class="caption">DRAG TO ROTATE · EXPLORE BOTH SIDES</div>
+</div>
+<script>
+const card=document.getElementById('card');
+const scene=document.getElementById('scene');
+let down=false,startX=0,startY=0,rotationY=0,rotationX=0;
+let lastX=0,lastY=0;
+function render(){card.style.transform=`rotateX(${rotationX}deg) rotateY(${rotationY}deg)`}
+scene.addEventListener('pointerdown',e=>{
+ if(e.target.closest('button')||e.target.closest('a'))return;
+ down=true;startX=e.clientX;startY=e.clientY;
+ lastX=rotationY;lastY=rotationX;
+ scene.setPointerCapture(e.pointerId);
+});
+scene.addEventListener('pointermove',e=>{
+ if(!down)return;
+ rotationY=lastX+(e.clientX-startX)*.65;
+ rotationX=Math.max(-20,Math.min(20,lastY-(e.clientY-startY)*.25));
+ render();
+});
+scene.addEventListener('pointerup',()=>down=false);
+scene.addEventListener('pointercancel',()=>down=false);
+document.getElementById('save').addEventListener('click',()=>{
+ const vcard=[
+ 'BEGIN:VCARD','VERSION:3.0',
+ 'FN:Obadah Aljilani',
+ 'TITLE:Cybersecurity & Systems Administrator',
+ 'ORG:NPC',
+ 'TEL;TYPE=CELL:+962787952436',
+ 'EMAIL;TYPE=WORK:Oaljilani@npc.com.jo',
+ 'EMAIL;TYPE=HOME:obadahaljilani5@gmail.com',
+ 'URL:https://www.linkedin.com/in/obadah-aljilani',
+ 'END:VCARD'
+ ].join('\r\n');
+ const blob=new Blob([vcard],{type:'text/vcard;charset=utf-8'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url;a.download='Obadah_Aljilani.vcf';a.click();
+ URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
+
